@@ -73,8 +73,8 @@ def build_pipeline():
 def main(sqlc,input_dir,loaded_model=None):
 	print('retrieving data from {}'.format(input_dir))
 	if not loaded_model:
-		train_set = sqlContext.read.format('com.databricks.spark.csv').options(header='true', inferschema='true').load(input_dir+'training_data.csv')
-	test_set = sqlContext.read.format('com.databricks.spark.csv').options(header='true', inferschema='true').load(input_dir+'test_data.csv')
+		train_set = sqlc.read.format('com.databricks.spark.csv').options(header='true', inferschema='true').load(input_dir+'training_data.csv')
+	test_set = sqlc.read.format('com.databricks.spark.csv').options(header='true', inferschema='true').load(input_dir+'test_data.csv')
 	print('preprocessing data...')
 	reg_replaceUdf = f.udf(pre_processing, t.StringType())
 	if not loaded_model:
